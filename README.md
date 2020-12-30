@@ -1,5 +1,5 @@
 # tkinter-image-viewer
-[![CodeFactor](https://www.codefactor.io/repository/github/cbridges851/tkinter-image-viewer/badge)](https://www.codefactor.io/repository/github/cbridges851/tkinter-image-viewer)
+[![CodeFactor](https://www.codefactor.io/repository/github/cbridges851/tkinter-image-viewer/badge)](https://www.codefactor.io/repository/github/cbridges851/tkinter-image-viewer)  
 This is my second project I have made while learning Tkinter. It is an application that allows you to view images that are in the images folder by the Python file.
 
 ## Motivation
