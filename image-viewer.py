@@ -2,6 +2,7 @@ from tkinter import Tk, Label, Button
 from PIL import Image, ImageTk
 from os import listdir
 from os.path import isfile
+import time
 
 class ImageViewer():
     def __init__(self):
@@ -16,6 +17,8 @@ class ImageViewer():
         self.name_label = Label(self.root, text=self.image_files[self.current_image_index], bg="#1D1D1D", fg="#FFFFFF", font=("Arial 18"))
         self.current_image = ImageTk.PhotoImage(Image.open(f"./images/{self.image_files[self.current_image_index]}"))
         self.display = Label(image=self.current_image, width=500, height=300, bg="#1D1D1D")
+        self.move_left_button = Button(self.root, text="<", font=("Calibri 20"), bg="#1C1C1C", fg="#FFFFFF", command=self.move_left)
+        self.move_right_button = Button(self.root, text=">", font=("Calibri 20"), bg="#1C1C1C", fg="#FFFFFF", command=self.move_right)
 
     def move_left(self):
         if self.current_image_index != 0:
@@ -31,6 +34,13 @@ class ImageViewer():
             self.current_image = ImageTk.PhotoImage(Image.open(f"./images/{self.image_files[self.current_image_index]}"))
             self.display.configure(image=self.current_image)
 
+    def onKeyPress(self, event):
+        if event.keycode == 37:
+            self.move_left()
+        
+        if event.keycode == 39:
+            self.move_right()
+
     def render(self):
         self.root.title("Image Viewer")
         self.root.iconbitmap("./favicon.ico")
@@ -40,11 +50,11 @@ class ImageViewer():
         self.display.grid(row=1, column=1)
 
         # Buttons
-        move_left_button = Button(self.root, text="<", font=("Calibri 20"), bg="#1C1C1C", fg="#FFFFFF", command=self.move_left)
-        move_left_button.grid(row=1, column=0)
-        move_right_button = Button(self.root, text=">", font=("Calibri 20"), bg="#1C1C1C", fg="#FFFFFF", command=self.move_right)
-        move_right_button.grid(row=1, column=2)
+        
+        self.move_left_button.grid(row=1, column=0)
+        self.move_right_button.grid(row=1, column=2)
 
+        self.root.bind("<KeyPress>", self.onKeyPress)
         self.root.mainloop()
 
 ImageViewer().render()
