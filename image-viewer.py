@@ -41,7 +41,7 @@ class ImageViewer():
             self.move_right()
 
     def render(self):
-        self.root.title("Image Viewer")
+        self.root.title("Chrispy Image Viewer")
         self.root.iconbitmap("./favicon.ico")
         self.root.configure(bg="#1D1D1D")
         
