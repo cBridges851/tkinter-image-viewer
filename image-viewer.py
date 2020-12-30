@@ -2,7 +2,6 @@ from tkinter import Tk, Label, Button
 from PIL import Image, ImageTk
 from os import listdir
 from os.path import isfile
-import time
 
 class ImageViewer():
     def __init__(self):
@@ -45,12 +44,12 @@ class ImageViewer():
         self.root.title("Image Viewer")
         self.root.iconbitmap("./favicon.ico")
         self.root.configure(bg="#1D1D1D")
-
+        
         self.name_label.grid(row=0, column=0, columnspan=3)
+
         self.display.grid(row=1, column=1)
 
         # Buttons
-        
         self.move_left_button.grid(row=1, column=0)
         self.move_right_button.grid(row=1, column=2)
 
