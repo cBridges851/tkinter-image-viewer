@@ -21,3 +21,6 @@ Tkinter - a standard library in Python to make applications with GUIs.
     - To navigate through the pictures, either click on the arrow buttons on the sides, or press the arrow keys on your keyboard.
 - To change the images in the viewer:
     - Navigate to the images folder in the project's directory in the file explorer, and add or remove images!
+
+## Contributing
+If you have any ideas for features or come across any bugs you'd like to fix, feel free to create an issue! I'll review it and assign you to it as soon as I can :)
