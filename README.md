@@ -23,4 +23,4 @@ Tkinter - a standard library in Python to make applications with GUIs.
     - Navigate to the images folder in the project's directory in the file explorer, and add or remove images!
 
 ## Contributing
-If you have any ideas for features or come across any bugs you'd like to fix, feel free to create an issue! I'll review it and assign you to it as soon as I can :)
+Take a gander of the [Contributing.md](https://github.com/cBridges851/tkinter-image-viewer/blob/master/Contributing.md) for the guidelines. Checkout the open issues to see if there are any you would like to take on and express your interest in the thread. However, if you have any other ideas, feel free to create a new issue!
