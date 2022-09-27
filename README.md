@@ -24,3 +24,9 @@ Tkinter - a standard library in Python to make applications with GUIs.
 
 ## Contributing
 Take a gander of the [Contributing.md](https://github.com/cBridges851/tkinter-image-viewer/blob/master/Contributing.md) for the guidelines. Checkout the open issues to see if there are any you would like to take on and express your interest in the thread. However, if you have any other ideas, feel free to create a new issue!
+
+Feel free to send me any feedback on the contributing process, here are the places you can reach me:
+LinkedIn: https://www.linkedin.com/in/christa-bridges/
+Twitter: https://twitter.com/christa_bridges
+Instagram: https://www.instagram.com/the_chrispy_1/
+Or send a pigeon.
