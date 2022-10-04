@@ -72,8 +72,12 @@ class ImageViewer():
     
     # Open the explorer and choose a new folder    
     def open_folder(self):
-        self.img_dir = filedialog.askdirectory()
-        self.find_images(self.img_dir)
+        new_dir = filedialog.askdirectory()
+        
+        # only change directory if a new one is selected
+        if new_dir != "": 
+            self.img_dir = new_dir
+            self.find_images(self.img_dir)
     
     # Refresh the current directory, incase images have been added or removed
     def refresh(self):
@@ -89,7 +93,7 @@ class ImageViewer():
         for item in listdir(dir):
             if isfile(f"{dir}/{item}"):
                 # Only add image items with the following extensions
-                if(item.lower().endswith(('.png', '.jpg', '.jpeg', '.ico', '.gif', '.svg'))):
+                if(item.lower().endswith(('.png', '.jpg', '.jpeg', '.ico', '.gif'))):
                     self.image_files.append(item)
                 
         # Display
@@ -104,17 +108,32 @@ class ImageViewer():
             self.current_image = ImageTk.PhotoImage(self.resize_image(new_img)) # Resize and load the image
             self.display.configure(image=self.current_image) # Display the image
             
-        except:            
+        except OSError as e:
             # No images were found - so change the label and display a blank image
-            self.name_label.configure(text="No image found")
+            self.name_label.configure(text=e)
+            self.current_image = ImageTk.PhotoImage(self.blank_img)
+            self.display.configure(image=self.current_image)
+            
+        except IndexError:
+            # No images were found - so change the label and display a blank image
+            self.name_label.configure(text="No image files found")
             self.current_image = ImageTk.PhotoImage(self.blank_img)
             self.display.configure(image=self.current_image)
     
-    # Resize the images for display
-    # Currently fixes the height to 300 pixels and adjusts the width, keeping the original aspect ratio to avoid stretching the image
+    # Resize the images for display if they are bigger than 500 x 300 -- keeping their aspect ratio
     def resize_image(self, image):
-        aspect_ratio = image.width / image.height
-        new_width = aspect_ratio * 300
-        return image.resize((int(new_width), 300), Image.Resampling.LANCZOS)
+        
+        if image.height > 300:
+            aspect_ratio = image.width / image.height
+            new_width = aspect_ratio * 300
+            return image.resize((int(new_width), 300), Image.Resampling.LANCZOS)
+        
+        elif image.width > 500:
+            aspect_ratio = image.width / image.height
+            new_height = 500 * aspect_ratio
+            return image.resize((500, int(new_height)), Image.Resampling.LANCZOS)
+        
+        else:
+            return image
 
 ImageViewer().render()
