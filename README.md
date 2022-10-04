@@ -6,13 +6,38 @@ This is my second project I have made while learning Tkinter. It is an applicati
 In freeCodeCamp's Tkinter course (https://www.youtube.com/watch?v=YXPyB4XeYLA&t=2331s), I had learnt about using icons, images and making exit buttons. I didn't make an exit button for this application, but I found it straightforward anyway, but I did practise putting images onto the application and changing the icon of the window.
 
 ## Tech/Framework
-Tkinter - a standard library in Python to make applications with GUIs.
+[Tkinter](https://docs.python.org/3/library/tkinter.html) - a standard library in Python to make applications with GUIs.
+
+## Prerequisites
+
+- [Python](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/)
 
 ## Installation
 - Clone the project via your terminal: `https://github.com/cBridges851/tkinter-image-viewer.git`
-- Make sure you have the Pillow package installed. To see which Pip packages you have installed, execute `pip freeze` in your terminal.
-    - If you don't have Pillow installed, just execute `pip install Pillow`
-- In your terminal, execute `python image-viewer.py` to open it.
+    ```sh
+    git clone https://github.com/cBridges851/tkinter-image-viewer.git
+
+    cd tkinter-image-viewer
+    ```
+- Make sure you have the Pillow and Tkinter package installed.      
+    - You can manually install them through [Pip](https://pip.pypa.io/en/stable/) by executing the following commands simultaneously.
+        `````sh
+        pip install tk
+        pip install Pillow
+        `````
+        OR
+
+    - Use the [requirements.txt](https://learnpython.com/blog/python-requirements-file/) file present in the repo to install them.
+        `````sh
+        pip install -r requirements.txt
+        `````
+
+
+- In your terminal, execute `python image-viewer.py` to run the application.
+    ```sh
+    python image-viewer.py
+    ```
 
 ## How To Use
 - To view images:
