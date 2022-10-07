@@ -109,9 +109,9 @@ class ImageViewer():
             self.current_image = ImageTk.PhotoImage(self.blank_img)
             self.display.configure(image=self.current_image)
     
-    # Resize the images for display if they are bigger than 500 x 300 -- keeping their aspect ratio
     def resize_image(self, image):
         
+        # Use the original aspect ratio of the image to resize
         if image.height > 300:
             aspect_ratio = image.width / image.height
             new_width = aspect_ratio * 300
