@@ -46,8 +46,7 @@ class ImageViewer:
 
     def render(self):
         self.root.title("Chrispy Image Viewer")
-        # img = PhotoImage(file='favicon.ico')
-        # root.tk.call('wm', 'iconphoto', root._w, img)
+        self.root.iconbitmap("./favicon.ico")
         self.root.configure(bg="#1D1D1D")
 
         self.name_label.grid(row=0, column=0, columnspan=3)
