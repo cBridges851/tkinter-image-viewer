@@ -46,7 +46,7 @@ class ImageViewer:
 
     def render(self):
         self.root.title("Chrispy Image Viewer")
-        self.root.iconbitmap("./favicon.ico")
+        # self.root.iconbitmap("./favicon.ico")
         self.root.configure(bg="#1D1D1D")
 
         self.name_label.grid(row=0, column=0, columnspan=3)
@@ -82,8 +82,11 @@ class ImageViewer:
                 ("ico files", "*.ico"),
             )
         )
+        if len(files) == 0: # User cancelled
+            return
         self.image_files = []
-        self.image_files.append(*files)
+        for file in files:
+            self.image_files.append(file)
         self.display_image()
 
     def open_folder(self):
