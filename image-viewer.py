@@ -74,7 +74,7 @@ class ImageViewer:
     def open_files(self):
         files = filedialog.askopenfilenames(
             filetypes=(
-                ("all files accepted", ["*.png", ".jpg", ".ico", ".gif", ".jpeg"]),
+                ("all files accepted", ["*.png", "*.jpg", "*.ico", "*.gif", "*.jpeg"]),
                 ("png files", "*.png"),
                 ("jpg files", "*.jpg"),
                 ("jpeg files", "*.jpeg"),
