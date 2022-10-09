@@ -65,7 +65,7 @@ class ImageViewer:
         self.root.config(menu=menubar)
 
         file_menu = Menu(menubar, tearoff=False)
-        file_menu.add_command(label="Open file(s)", command=self.open_files)
+        file_menu.add_command(label="Open File(s)", command=self.open_files)
         file_menu.add_command(label="Open Folder", command=self.open_folder, underline=0)
         file_menu.add_command(label="Refresh", command=self.refresh, underline=0)
         file_menu.add_command(label="Exit", command=self.root.destroy, underline=1)
