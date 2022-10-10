@@ -1,7 +1,7 @@
 from tkinter import Tk, Label, Button, Menu, filedialog
 from PIL import Image, ImageTk
-from os import listdir
-from os.path import isfile
+from os import listdir, pardir
+from os.path import isfile, abspath, join, basename
 
 
 class ImageViewer:
@@ -74,19 +74,20 @@ class ImageViewer:
     def open_files(self):
         files = filedialog.askopenfilenames(
             filetypes=(
-                ("all files accepted", ["*.png", "*.jpg", "*.ico", "*.gif", "*.jpeg"]),
-                ("png files", "*.png"),
-                ("jpg files", "*.jpg"),
-                ("jpeg files", "*.jpeg"),
-                ("gif files", "*.gif"),
-                ("ico files", "*.ico"),
+                ("All files accepted", ["*.png", "*.jpg", "*.jpeg", "*.ico", "*.gif"]),
+                ("JPEG", ["*.jpg", "*.jpeg"]),
+                ("GIF", "*.gif"),
+                ("PNG", "*.png"),
+                ("ICO", "*.ico"),
             )
         )
+
         if len(files) == 0: # User cancelled
             return
         self.image_files = []
+        self.img_dir = abspath(join(files[0], pardir))
         for file in files:
-            self.image_files.append(file)
+            self.image_files.append(basename(file))
         self.display_image()
 
     def open_folder(self):
@@ -107,7 +108,7 @@ class ImageViewer:
         for item in listdir(dir):
             if isfile(f"{dir}/{item}"):
                 if item.lower().endswith((".png", ".jpg", ".jpeg", ".ico", ".gif")):
-                    self.image_files.append(f"{dir}/{item}")
+                    self.image_files.append(item)
 
         self.display_image()
 
@@ -115,7 +116,7 @@ class ImageViewer:
 
         try:
             self.name_label.configure(text=self.image_files[self.current_image_index])
-            new_img = Image.open(f"{self.image_files[self.current_image_index]}")
+            new_img = Image.open(f"{self.img_dir}/{self.image_files[self.current_image_index]}")
             self.current_image = ImageTk.PhotoImage(self.resize_image(new_img))
             self.display.configure(image=self.current_image)
 
