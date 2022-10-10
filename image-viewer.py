@@ -70,25 +70,24 @@ class ImageViewer:
         file_menu.add_command(label="Exit", command=self.root.destroy, underline=1)
 
         theme_menu = Menu(menubar, tearoff=0)
-        theme_menu.add_command(label="Dark", command=self.set_theme_dark, underline=0)
-        theme_menu.add_command(label="Light", command=self.set_theme_light, underline=0)
-        file_menu.add_cascade(label="Theme", menu=theme_menu, underline=0)
+        theme_menu.add_command(label="Dark", command=lambda: self.set_theme("#1D1D1D", "#F0F0F0", "#1C1C1C"), underline=0)
+        theme_menu.add_command(label="Light", command=lambda: self.set_theme("#F0F0F0", "#1D1D1D", "#E0E0E0"), underline=0)
+        
+        customize_menu = Menu(menubar, tearoff=False)
+        
+        customize_menu.add_cascade(label="Theme", menu=theme_menu, underline=0)
+
 
         menubar.add_cascade(label="File", menu=file_menu, underline=0)
+        menubar.add_cascade(label="Customize", menu=customize_menu, underline=0)
 
-    def set_theme_dark(self):
-        self.root.configure(bg="#1D1D1D")
-        self.name_label.configure(bg="#1D1D1D", fg="#F0F0F0")
-        self.display.configure(bg="#1D1D1D")
-        self.move_left_button.configure(bg="#1C1C1C", fg="#F0F0F0")
-        self.move_right_button.configure(bg="#1C1C1C", fg="#F0F0F0")
+    def set_theme(self, background, foreground, buttonBackground):
+        self.root.configure(bg=background)
+        self.name_label.configure(bg=background, fg=foreground)
+        self.display.configure(bg=background)
+        self.move_left_button.configure(bg=buttonBackground, fg=foreground)
+        self.move_right_button.configure(bg=buttonBackground, fg=foreground)
 
-    def set_theme_light(self):
-        self.root.configure(bg="#F0F0F0")
-        self.name_label.configure(bg="#F0F0F0", fg="#1D1D1D")
-        self.display.configure(bg="#F0F0F0")
-        self.move_left_button.configure(bg="#E0E0E0", fg="#1D1D1D")
-        self.move_right_button.configure(bg="#E0E0E0", fg="#1D1D1D")
 
     def open_folder(self):
         new_dir = filedialog.askdirectory()
