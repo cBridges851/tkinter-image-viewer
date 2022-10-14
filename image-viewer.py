@@ -46,7 +46,7 @@ class ImageViewer:
 
     def render(self):
         self.root.title("Chrispy Image Viewer")
-        # self.root.iconbitmap("./favicon.ico")
+        self.root.tk.call('wm', 'iconphoto', self.root._w, ImageTk.PhotoImage(file='favicon.ico'))
         self.root.configure(bg="#1D1D1D")
 
         self.name_label.grid(row=0, column=0, columnspan=3)
@@ -65,11 +65,33 @@ class ImageViewer:
         self.root.config(menu=menubar)
 
         file_menu = Menu(menubar, tearoff=False)
-        file_menu.add_command(label="Open File(s)", command=self.open_files)
+
+        file_menu.add_command(label="Open File(s)", command=self.open_files, underline=0)
         file_menu.add_command(label="Open Folder", command=self.open_folder, underline=0)
         file_menu.add_command(label="Refresh", command=self.refresh, underline=0)
         file_menu.add_command(label="Exit", command=self.root.destroy, underline=1)
         menubar.add_cascade(label="File", menu=file_menu, underline=0)
+        
+        theme_menu = Menu(menubar, tearoff=0)
+        theme_menu.add_command(label="Dark", command=lambda: self.set_theme("#1D1D1D", "#F0F0F0", "#1C1C1C"), underline=0)
+        theme_menu.add_command(label="Light", command=lambda: self.set_theme("#F0F0F0", "#1D1D1D", "#E0E0E0"), underline=0)
+        
+        customize_menu = Menu(menubar, tearoff=False)
+        
+        customize_menu.add_cascade(label="Theme", menu=theme_menu, underline=0)
+
+
+        menubar.add_cascade(label="File", menu=file_menu, underline=0)
+        menubar.add_cascade(label="Customize", menu=customize_menu, underline=0)
+
+    def set_theme(self, background, foreground, buttonBackground):
+        self.root.configure(bg=background)
+        self.name_label.configure(bg=background, fg=foreground)
+        self.display.configure(bg=background)
+        self.move_left_button.configure(bg=buttonBackground, fg=foreground)
+        self.move_right_button.configure(bg=buttonBackground, fg=foreground)
+
+
 
     def open_files(self):
         files = filedialog.askopenfilenames(
