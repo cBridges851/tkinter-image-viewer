@@ -1,7 +1,7 @@
 from tkinter import Tk, Label, Button, Menu, filedialog
 from PIL import Image, ImageTk
-from os import listdir
-from os.path import isfile
+from os import listdir, pardir
+from os.path import isfile, abspath, join, basename
 
 
 class ImageViewer:
@@ -12,6 +12,7 @@ class ImageViewer:
         self.image_files = []
         self.blank_img = Image.new("RGBA", (500, 300), (0, 0, 0, 0))
         self.img_dir = default_directory
+        self.open_mode = "folder"
 
         self.root = Tk()
         self.name_label = Label(self.root, text="No image found", bg="#1D1D1D", fg="#FFFFFF", font=("Arial 18"))
@@ -46,7 +47,7 @@ class ImageViewer:
 
     def render(self):
         self.root.title("Chrispy Image Viewer")
-        self.root.tk.call('wm', 'iconphoto', self.root._w, ImageTk.PhotoImage(file='favicon.ico'))
+        self.root.tk.call("wm", "iconphoto", self.root._w, ImageTk.PhotoImage(file="favicon.ico"))
         self.root.configure(bg="#1D1D1D")
 
         self.name_label.grid(row=0, column=0, columnspan=3)
@@ -65,18 +66,23 @@ class ImageViewer:
         self.root.config(menu=menubar)
 
         file_menu = Menu(menubar, tearoff=False)
+
+        file_menu.add_command(label="Open File(s)", command=self.open_files, underline=0)
         file_menu.add_command(label="Open Folder", command=self.open_folder, underline=0)
         file_menu.add_command(label="Refresh", command=self.refresh, underline=0)
         file_menu.add_command(label="Exit", command=self.root.destroy, underline=1)
 
         theme_menu = Menu(menubar, tearoff=0)
-        theme_menu.add_command(label="Dark", command=lambda: self.set_theme("#1D1D1D", "#F0F0F0", "#1C1C1C"), underline=0)
-        theme_menu.add_command(label="Light", command=lambda: self.set_theme("#F0F0F0", "#1D1D1D", "#E0E0E0"), underline=0)
-        
-        customize_menu = Menu(menubar, tearoff=False)
-        
-        customize_menu.add_cascade(label="Theme", menu=theme_menu, underline=0)
+        theme_menu.add_command(
+            label="Dark", command=lambda: self.set_theme("#1D1D1D", "#F0F0F0", "#1C1C1C"), underline=0
+        )
+        theme_menu.add_command(
+            label="Light", command=lambda: self.set_theme("#F0F0F0", "#1D1D1D", "#E0E0E0"), underline=0
+        )
 
+        customize_menu = Menu(menubar, tearoff=False)
+
+        customize_menu.add_cascade(label="Theme", menu=theme_menu, underline=0)
 
         menubar.add_cascade(label="File", menu=file_menu, underline=0)
         menubar.add_cascade(label="Customize", menu=customize_menu, underline=0)
@@ -88,16 +94,39 @@ class ImageViewer:
         self.move_left_button.configure(bg=buttonBackground, fg=foreground)
         self.move_right_button.configure(bg=buttonBackground, fg=foreground)
 
+    def open_files(self):
+        files = filedialog.askopenfilenames(
+            filetypes=(
+                ("All files accepted", ["*.png", "*.jpg", "*.jpeg", "*.ico", "*.gif"]),
+                ("JPEG", ["*.jpg", "*.jpeg"]),
+                ("GIF", "*.gif"),
+                ("PNG", "*.png"),
+                ("ICO", "*.ico"),
+            )
+        )
+
+        if len(files) == 0:  # User cancelled
+            return
+        self.image_files = []
+        self.img_dir = abspath(join(files[0], pardir))
+        for file in files:
+            self.image_files.append(basename(file))
+        self.open_mode = "files"
+        self.display_image()
 
     def open_folder(self):
         new_dir = filedialog.askdirectory()
 
         if new_dir != "":
+            self.open_mode = "folder"
             self.img_dir = new_dir
             self.find_images(self.img_dir)
 
     def refresh(self):
-        self.find_images(self.img_dir)
+        if self.open_mode == "files":
+            self.display_image()
+        else:
+            self.find_images(self.img_dir)
 
     def find_images(self, dir):
 
