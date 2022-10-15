@@ -14,8 +14,8 @@ class ImageViewer:
         self.img_dir = default_directory
 
         self.root = Tk()
-        self.root.geometry("800x600+500+250")                  # Window Size And Window Position on screen
-        self.root.resizable(height=False,width=False)          # Adjustable Height and Width set to False
+        self.root.geometry("800x600+500+250")                  # window_Width x window_Height + x_Position on screen + y_Position on screen (Unit: Pixel)
+        self.root.resizable(height=False,width=False)
         self.name_label = Label(self.root, text="No image found", bg="#1D1D1D", fg="#FFFFFF", font=("Arial 18"))
         self.current_image = ImageTk.PhotoImage(self.blank_img)
         self.display = Label(image=self.current_image, width=500, height=300, bg="#1D1D1D")
