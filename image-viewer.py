@@ -15,6 +15,8 @@ class ImageViewer:
         self.open_mode = "folder"
 
         self.root = Tk()
+        self.root.geometry("800x600+500+250")                  # window_Width x window_Height + x_Position on screen + y_Position on screen (Unit: Pixel)
+        self.root.resizable(height=False,width=False)
         self.name_label = Label(self.root, text="No image found", bg="#1D1D1D", fg="#FFFFFF", font=("Arial 18"))
         self.current_image = ImageTk.PhotoImage(self.blank_img)
         self.display = Label(image=self.current_image, width=500, height=300, bg="#1D1D1D")
@@ -50,13 +52,12 @@ class ImageViewer:
         self.root.tk.call("wm", "iconphoto", self.root._w, ImageTk.PhotoImage(file="favicon.ico"))
         self.root.configure(bg="#1D1D1D")
 
-        self.name_label.grid(row=0, column=0, columnspan=3)
-
-        self.display.grid(row=1, column=1)
+        self.name_label.place(relx=0,rely=0,relheight=0.05,relwidth=1)
+        self.display.place(relx=0.175,rely=0.2,relheight=0.5,relwidth=0.625)
 
         # Buttons
-        self.move_left_button.grid(row=1, column=0)
-        self.move_right_button.grid(row=1, column=2)
+        self.move_left_button.place(relx=0,rely=0.45,relheight=0.1,relwidth=0.1)
+        self.move_right_button.place(relx=0.9,rely=0.45,relheight=0.1,relwidth=0.1)
 
         self.root.bind("<KeyPress>", self.onKeyPress)
         self.root.mainloop()
