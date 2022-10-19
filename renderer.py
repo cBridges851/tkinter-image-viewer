@@ -1,4 +1,3 @@
-from navigator import Navigator
 from orchestrator import Orchestrator
 from PIL import ImageTk
 
