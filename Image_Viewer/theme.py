@@ -2,9 +2,9 @@ import json
 import os
 class Theme:
     def __init__(self):
-        themeDictionary = self.readTheme()
+        themeDictionary = self.read_theme()
         self.themes = themeDictionary["themes"]
-        self.currentTheme=themeDictionary["lastTheme"]
+        self.current_theme=themeDictionary["lastTheme"]
         
     
         
@@ -17,20 +17,19 @@ class Theme:
             self.move_right_button.configure(bg=buttonBackground, fg=foreground)
             
 
-    def readTheme(self):
+    def read_theme(self):
         with open('Image_Viewer/themes.json', 'r') as openfile:
             json_object = json.load(openfile)
             return json_object
     
-    def writeTheme(self):
-        themeDictionary = {"themes":self.themes,"lastTheme":self.currentTheme}
+    def write_theme(self):
+        themeDictionary = {"themes":self.themes,"lastTheme":self.current_theme}
         json_object = json.dumps(themeDictionary, indent=4)
         with open('Image_Viewer/themes.json','w') as openfile:
             
             openfile.write(json_object)
             
-    def changeTheme(self,theme):
-        print(self.themes[theme])
+    def change_theme(self,theme):
         self.set_theme(**self.themes[theme])
-        self.currentTheme=theme
-        self.writeTheme()
+        self.current_theme=theme
+        self.write_theme()

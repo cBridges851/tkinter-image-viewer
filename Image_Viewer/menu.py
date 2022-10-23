@@ -20,10 +20,10 @@ class AppMenu(Theme, FileHandler):
 
         theme_menu = Menu(menubar, tearoff=0)
         theme_menu.add_command(
-            label="Dark", command=lambda:  self.changeTheme("Dark"), underline=0
+            label="Dark", command=lambda:self.change_theme("Dark"), underline=0
         )
         theme_menu.add_command(
-            label="Light", command=lambda: self.changeTheme("Light"), underline=0
+            label="Light", command=lambda:self.change_theme("Light"), underline=0
         )
 
         customize_menu = Menu(menubar, tearoff=False)
