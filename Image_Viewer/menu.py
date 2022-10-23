@@ -1,10 +1,12 @@
 from tkinter import Menu
 
-from theme import Theme
-from file_handler import FileHandler
+from Image_Viewer.theme import Theme
+from Image_Viewer.file_handler import FileHandler
 
 class AppMenu(Theme, FileHandler):
-    
+    def __init__(self):
+        Theme.__init__(self)
+        
     def create_menu(self):
         menubar = Menu(self.root)
         self.root.config(menu=menubar)
@@ -18,10 +20,10 @@ class AppMenu(Theme, FileHandler):
 
         theme_menu = Menu(menubar, tearoff=0)
         theme_menu.add_command(
-            label="Dark", command=lambda: self.set_theme("#1D1D1D", "#F0F0F0", "#1C1C1C"), underline=0
+            label="Dark", command=lambda:  self.changeTheme("Dark"), underline=0
         )
         theme_menu.add_command(
-            label="Light", command=lambda: self.set_theme("#F0F0F0", "#1D1D1D", "#E0E0E0"), underline=0
+            label="Light", command=lambda: self.changeTheme("Light"), underline=0
         )
 
         customize_menu = Menu(menubar, tearoff=False)

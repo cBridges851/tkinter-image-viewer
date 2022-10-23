@@ -1,12 +1,12 @@
-from renderer import Renderer
-from menu import AppMenu
+from Image_Viewer.renderer import Renderer
+from Image_Viewer.menu import AppMenu
 from tkinter import Tk, Label, Button
 from PIL import Image, ImageTk
 
 class ImageViewer(Renderer, AppMenu):
     def __init__(self):
-        
-        default_directory = "./images"
+        AppMenu.__init__(self)
+        default_directory = "Image_Viewer/images"
         self.current_image_index = 0
         self.image_files = []
         self.blank_img = Image.new("RGBA", (500, 300), (0, 0, 0, 0))
@@ -31,5 +31,3 @@ class ImageViewer(Renderer, AppMenu):
         self.refresh()
         
 
-if __name__ == '__main__':
-    ImageViewer().render()

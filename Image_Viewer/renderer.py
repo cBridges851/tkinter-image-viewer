@@ -1,11 +1,15 @@
-from orchestrator import Orchestrator
+from tkinter import Image
 from PIL import ImageTk
+from Image_Viewer.orchestrator import Orchestrator
+from Image_Viewer.theme import Theme
 
 class Renderer(Orchestrator):
     def render(self):
         self.root.title("Chrispy Image Viewer")
-        self.root.tk.call("wm", "iconphoto", self.root._w, ImageTk.PhotoImage(file="favicon.ico"))
-        self.root.configure(bg="#1D1D1D")
+        self.root.tk.call("wm", "iconphoto", self.root._w, ImageTk.PhotoImage(file="Image_Viewer/favicon.ico"))
+        themeObj=Theme()
+        print(themeObj.themes[themeObj.currentTheme])
+        self.set_theme(**themeObj.themes[themeObj.currentTheme])
 
         self.name_label.place(relx=0,rely=0,relheight=0.05,relwidth=1)
         self.display.place(relx=0.175,rely=0.2,relheight=0.5,relwidth=0.625)
