@@ -2,7 +2,7 @@ from tkinter import Menu
 
 from Image_Viewer.theme import Theme
 from Image_Viewer.file_handler import FileHandler
-
+from Image_Viewer.themes_enum import Themes
 class AppMenu(Theme, FileHandler):
     def __init__(self):
         Theme.__init__(self)
@@ -20,10 +20,10 @@ class AppMenu(Theme, FileHandler):
 
         theme_menu = Menu(menubar, tearoff=0)
         theme_menu.add_command(
-            label="Dark", command=lambda:self.change_theme("Dark"), underline=0
+            label="Dark", command=lambda:self.change_theme(Themes.DARK), underline=0
         )
         theme_menu.add_command(
-            label="Light", command=lambda:self.change_theme("Light"), underline=0
+            label="Light", command=lambda:self.change_theme(Themes.LIGHT), underline=0
         )
 
         customize_menu = Menu(menubar, tearoff=False)

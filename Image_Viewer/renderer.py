@@ -1,4 +1,3 @@
-from tkinter import Image
 from PIL import ImageTk
 from Image_Viewer.orchestrator import Orchestrator
 from Image_Viewer.theme import Theme
