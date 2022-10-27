@@ -9,11 +9,12 @@ import json
 class ImageViewer(Renderer, AppMenu):
     def __init__(self):
 
-        f = open("./settings/default_display_settings.json", "r")
-        f2 = open("./lang/en-GB.json")
+        defaultDisplaySettingsFile = open(
+            "./settings/default_display_settings.json", "r")
+        languageFile = open("./lang/en-GB.json")
 
-        configuration = json.load(f)
-        lang = json.load(f2)
+        configuration = json.load(defaultDisplaySettingsFile)
+        lang = json.load(languageFile)
         labels = itemgetter("labels")(lang)
         blank_image, name_label, display, move_left_button, move_right_button = itemgetter(
             "blank_image", "name_label", "display", "move_left_button", "move_right_button")(configuration)
@@ -38,11 +39,11 @@ class ImageViewer(Renderer, AppMenu):
                              width=display["width"], height=display["height"], bg=display["bg"])
         self.move_left_button = Button(
             self.root, text=move_left_button["text"], font=(
-                move_left_button["font"]), bg=move_left_button["bg"], fg=move_left_button["fg"], command=self.move_left
+                move_left_button["font"]), bg="#1C1C1C", fg="#FFFFFF", command=self.move_left
         )
         self.move_right_button = Button(
             self.root, text=move_right_button["text"], font=(
-                move_right_button["font"]), bg=move_right_button["bg"], fg=move_right_button["fg"], command=self.move_right
+                move_right_button["font"]), bg="#1C1C1C", fg="#FFFFFF", command=self.move_right
         )
 
         self.create_menu()

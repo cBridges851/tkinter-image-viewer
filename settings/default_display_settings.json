@@ -16,14 +16,10 @@
   },
   "move_left_button": {
     "text": "<",
-    "font": "Calibri 20",
-    "bg": "#1C1C1C",
-    "fg": "#FFFFFF"
+    "font": "Calibri 20"
   },
   "move_right_button": {
     "text": ">",
-    "font": "Calibri 20",
-    "bg": "#1C1C1C",
-    "fg": "#FFFFFF"
+    "font": "Calibri 20"
   }
 }

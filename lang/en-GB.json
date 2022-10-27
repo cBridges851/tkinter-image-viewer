@@ -6,6 +6,9 @@
     "refresh": "Refresh",
     "exit": "Exit",
     "dark": "Dark",
-    "light": "Light"
+    "light": "Light",
+    "file": "File",
+    "theme": "Theme",
+    "customize": "Customize"
   }
 }

@@ -11,8 +11,8 @@ class AppMenu(Theme, FileHandler):
     def create_menu(self):
         f = open('./lang/en-GB.json', "r")
         configuration = json.load(f)
-        open_file, open_folder, refresh, exit, dark, light = itemgetter(
-            "open_file", "open_folder", "refresh", "exit", "dark", "light")(configuration["labels"])
+        open_file, open_folder, refresh, exit, dark, light, file, theme, customize = itemgetter(
+            "open_file", "open_folder", "refresh", "exit", "dark", "light", "file", "theme", "customize")(configuration["labels"])
         menubar = Menu(self.root)
         self.root.config(menu=menubar)
 
@@ -36,8 +36,8 @@ class AppMenu(Theme, FileHandler):
 
         customize_menu = Menu(menubar, tearoff=False)
 
-        customize_menu.add_cascade(label="Theme", menu=theme_menu, underline=0)
+        customize_menu.add_cascade(label=theme, menu=theme_menu, underline=0)
 
-        menubar.add_cascade(label="File", menu=file_menu, underline=0)
-        menubar.add_cascade(label="Customize",
+        menubar.add_cascade(label=file, menu=file_menu, underline=0)
+        menubar.add_cascade(label=customize,
                             menu=customize_menu, underline=0)
