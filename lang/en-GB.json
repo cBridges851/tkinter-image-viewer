@@ -1,0 +1,11 @@
+{
+  "labels": {
+    "no_image": "No image found",
+    "open_file": "Open File(s)",
+    "open_folder": "Open Folder",
+    "refresh": "Refresh",
+    "exit": "Exit",
+    "dark": "Dark",
+    "light": "Light"
+  }
+}

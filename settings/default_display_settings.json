@@ -5,7 +5,6 @@
     "color": "0, 0, 0, 0"
   },
   "name_label": {
-    "text": "No image found",
     "bg": "#1D1D1D",
     "fg": "#FFFFFF",
     "font": "Arial 18"

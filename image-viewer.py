@@ -8,17 +8,20 @@ import json
 
 class ImageViewer(Renderer, AppMenu):
     def __init__(self):
-        # Import configuration.json file, reads it and store data in variables
-        f = open("./configuration.json", "r")
+
+        f = open("./settings/default_display_settings.json", "r")
+        f2 = open("./lang/en-GB.json")
+
         configuration = json.load(f)
+        lang = json.load(f2)
+        labels = itemgetter("labels")(lang)
         blank_image, name_label, display, move_left_button, move_right_button = itemgetter(
             "blank_image", "name_label", "display", "move_left_button", "move_right_button")(configuration)
 
         default_directory = "./images"
         self.current_image_index = 0
         self.image_files = []
-        # Hardcoded data has been changed by data from the config file
-        # Eval method is used to transform string into tuple, which is the data type required by the image constructor
+
         self.blank_img = Image.new(
             blank_image["type"], eval(blank_image["size"]), eval(blank_image["color"]))
         self.img_dir = default_directory
@@ -29,7 +32,7 @@ class ImageViewer(Renderer, AppMenu):
         self.root.geometry("800x600+500+250")
         self.root.resizable(height=False, width=False)
         self.name_label = Label(
-            self.root, text=name_label["text"], bg=name_label["bg"], fg=name_label["fg"], font=(name_label["font"]))
+            self.root, text=labels["no_image"], bg=name_label["bg"], fg=name_label["fg"], font=(name_label["font"]))
         self.current_image = ImageTk.PhotoImage(self.blank_img)
         self.display = Label(image=self.current_image,
                              width=display["width"], height=display["height"], bg=display["bg"])
