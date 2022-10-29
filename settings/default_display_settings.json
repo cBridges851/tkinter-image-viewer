@@ -1,0 +1,25 @@
+{
+  "blank_image": {
+    "type": "RGBA",
+    "size": "500, 300",
+    "color": "0, 0, 0, 0"
+  },
+  "name_label": {
+    "bg": "#1D1D1D",
+    "fg": "#FFFFFF",
+    "font": "Arial 18"
+  },
+  "display": {
+    "width": 500,
+    "height": 300,
+    "bg": "#1D1D1D"
+  },
+  "move_left_button": {
+    "text": "<",
+    "font": "Calibri 20"
+  },
+  "move_right_button": {
+    "text": ">",
+    "font": "Calibri 20"
+  }
+}
