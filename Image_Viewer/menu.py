@@ -1,15 +1,18 @@
 from operator import itemgetter
 from tkinter import Menu
 
-from theme import Theme
-from file_handler import FileHandler
+from Image_Viewer.theme import Theme
+from Image_Viewer.file_handler import FileHandler
+from Image_Viewer.themes_enum import Themes
 import json
 
 
 class AppMenu(Theme, FileHandler):
-
+    def __init__(self):
+        Theme.__init__(self)
+        
     def create_menu(self):
-        f = open('./lang/en-GB.json', "r")
+        f = open('Image_Viewer/lang/en-GB.json', "r")
         configuration = json.load(f)
         open_file, open_folder, refresh, exit, dark, light, file, theme, customize = itemgetter(
             "open_file", "open_folder", "refresh", "exit", "dark", "light", "file", "theme", "customize")(configuration["labels"])
@@ -28,10 +31,10 @@ class AppMenu(Theme, FileHandler):
 
         theme_menu = Menu(menubar, tearoff=0)
         theme_menu.add_command(
-            label=dark, command=lambda: self.set_theme("#1D1D1D", "#F0F0F0", "#1C1C1C"), underline=0
+            label=dark, command=lambda:self.change_theme(Themes.DARK), underline=0
         )
         theme_menu.add_command(
-            label=light, command=lambda: self.set_theme("#F0F0F0", "#1D1D1D", "#E0E0E0"), underline=0
+            label=light, command=lambda:self.change_theme(Themes.LIGHT), underline=0
         )
 
         customize_menu = Menu(menubar, tearoff=False)

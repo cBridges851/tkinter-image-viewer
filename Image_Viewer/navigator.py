@@ -1,4 +1,4 @@
-from image_handler import ImageHandler
+from Image_Viewer.image_handler import ImageHandler
 
 class Navigator(ImageHandler):
     def move_left(self):

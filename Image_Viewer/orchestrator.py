@@ -1,4 +1,4 @@
-from navigator import Navigator
+from Image_Viewer.navigator import Navigator
 
 class Orchestrator(Navigator):
     

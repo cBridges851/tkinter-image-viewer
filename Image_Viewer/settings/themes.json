@@ -1,0 +1,13 @@
+{
+        "Dark": {
+            "background": "#1D1D1D",
+            "foreground": "#F0F0F0",
+            "buttonBackground": "#1C1C1C"
+        },
+        "Light": {
+            "background": "#F0F0F0",
+            "foreground": "#1D1D1D",
+            "buttonBackground": "#E0E0E0"
+        }
+}
+    

@@ -2,7 +2,7 @@ from os.path import isfile, abspath, join, basename
 from tkinter import filedialog
 from os import listdir, pardir
 
-from image_handler import ImageHandler
+from Image_Viewer.image_handler import ImageHandler
 
 class FileHandler(ImageHandler):
 

@@ -20,7 +20,7 @@ class ImageHandler:
 
     def display_image(self):
 
-        languageFile = open("./lang/en-GB.json")
+        languageFile = open("Image_Viewer/lang/en-GB.json")
         lang = json.load(languageFile)
         labels = itemgetter("labels")(lang)
 

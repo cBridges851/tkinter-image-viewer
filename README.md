@@ -36,13 +36,13 @@ In freeCodeCamp's Tkinter course (https://www.youtube.com/watch?v=YXPyB4XeYLA&t=
 
 - In your terminal, execute `python image-viewer.py` to run the application.
     ```sh
-    python image-viewer.py
+    python run.py
     ```
 
 ## How To Use
 - To view images:
     - When the application has opened as per above, you should see an interface that looks like this:
-    ![Image Viewer Interface](image-viewer.png)
+    ![Image Viewer Interface](Image_Viewer/image-viewer.png)
     - To navigate through the pictures, either click on the arrow buttons on the sides, or press the arrow keys on your keyboard.
 - To change the images in the viewer:
     - Navigate to the images folder in the project's directory in the file explorer, and add or remove images!

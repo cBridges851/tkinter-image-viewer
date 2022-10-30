@@ -1,6 +1,6 @@
+from Image_Viewer.renderer import Renderer
+from Image_Viewer.menu import AppMenu
 from operator import itemgetter
-from renderer import Renderer
-from menu import AppMenu
 from tkinter import Tk, Label, Button
 from PIL import Image, ImageTk
 import json
@@ -8,10 +8,11 @@ import json
 
 class ImageViewer(Renderer, AppMenu):
     def __init__(self):
+        AppMenu.__init__(self)
 
         defaultDisplaySettingsFile = open(
-            "./settings/default_display_settings.json", "r")
-        languageFile = open("./lang/en-GB.json")
+            "Image_Viewer/settings/default_display_settings.json", "r")
+        languageFile = open("Image_Viewer/lang/en-GB.json")
 
         configuration = json.load(defaultDisplaySettingsFile)
         lang = json.load(languageFile)
@@ -19,7 +20,7 @@ class ImageViewer(Renderer, AppMenu):
         blank_image, name_label, display, move_left_button, move_right_button = itemgetter(
             "blank_image", "name_label", "display", "move_left_button", "move_right_button")(configuration)
 
-        default_directory = "./images"
+        default_directory = "Image_Viewer/images"
         self.current_image_index = 0
         self.image_files = []
 
@@ -50,5 +51,3 @@ class ImageViewer(Renderer, AppMenu):
         self.refresh()
 
 
-if __name__ == '__main__':
-    ImageViewer().render()
