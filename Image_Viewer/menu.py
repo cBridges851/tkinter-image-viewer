@@ -12,7 +12,7 @@ class AppMenu(Theme, FileHandler):
         Theme.__init__(self)
         
     def create_menu(self):
-        f = open('./lang/en-GB.json', "r")
+        f = open('Image_Viewer/lang/en-GB.json', "r")
         configuration = json.load(f)
         open_file, open_folder, refresh, exit, dark, light, file, theme, customize = itemgetter(
             "open_file", "open_folder", "refresh", "exit", "dark", "light", "file", "theme", "customize")(configuration["labels"])

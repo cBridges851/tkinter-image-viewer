@@ -3,9 +3,8 @@ import json
 
 class Theme:
     def __init__(self):
-        themeDictionary = self.read_theme()
-        self.themes = themeDictionary["themes"]
-        self.current_theme = themeDictionary["lastTheme"]
+        self.themes = self.read_theme()
+        self.current_theme = self.read_custom_settings()["lastTheme"]
 
     def set_theme(self, background, foreground, buttonBackground):
         self.root.configure(bg=background)
@@ -19,17 +18,19 @@ class Theme:
             json_object = json.load(openfile)
             return json_object
 
-    def write_theme(self):
-        themeDictionary = {
-                                "themes": self.themes,
-                                "lastTheme": self.current_theme
-                           }
-        json_object = json.dumps(themeDictionary, indent=4)
-        with open('Image_Viewer/themes.json', 'w') as openfile:
+    def read_custom_settings(self):
+        with open('Image_Viewer/customSettings.json', 'r') as openfile:
+            json_object = json.load(openfile)
+            return json_object
 
+    def write_last_theme(self):
+        custom_settings = self.read_custom_settings()
+        custom_settings["lastTheme"] = self.current_theme
+        json_object = json.dumps(custom_settings, indent=4)
+        with open('Image_Viewer/customSettings.json', 'w') as openfile:
             openfile.write(json_object)
 
     def change_theme(self, theme):
         self.set_theme(**self.themes[theme.value])
         self.current_theme = theme.value
-        self.write_theme()
+        self.write_last_theme()

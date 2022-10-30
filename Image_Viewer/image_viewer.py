@@ -11,8 +11,8 @@ class ImageViewer(Renderer, AppMenu):
         AppMenu.__init__(self)
 
         defaultDisplaySettingsFile = open(
-            "./settings/default_display_settings.json", "r")
-        languageFile = open("./lang/en-GB.json")
+            "Image_Viewer/settings/default_display_settings.json", "r")
+        languageFile = open("Image_Viewer/lang/en-GB.json")
 
         configuration = json.load(defaultDisplaySettingsFile)
         lang = json.load(languageFile)

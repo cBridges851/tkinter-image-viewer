@@ -1,5 +1,4 @@
 {
-    "themes": {
         "Dark": {
             "background": "#1D1D1D",
             "foreground": "#F0F0F0",
@@ -10,6 +9,5 @@
             "foreground": "#1D1D1D",
             "buttonBackground": "#E0E0E0"
         }
-    },
-    "lastTheme": "Dark"
 }
+    
