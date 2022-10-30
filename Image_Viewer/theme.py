@@ -14,12 +14,12 @@ class Theme:
         self.move_right_button.configure(bg=buttonBackground, fg=foreground)
 
     def read_theme(self):
-        with open('Image_Viewer/themes.json', 'r') as openfile:
+        with open('Image_Viewer/settings/themes.json', 'r') as openfile:
             json_object = json.load(openfile)
             return json_object
 
     def read_custom_settings(self):
-        with open('Image_Viewer/customSettings.json', 'r') as openfile:
+        with open('Image_Viewer/settings/customSettings.json', 'r') as openfile:
             json_object = json.load(openfile)
             return json_object
 
@@ -27,7 +27,7 @@ class Theme:
         custom_settings = self.read_custom_settings()
         custom_settings["lastTheme"] = self.current_theme
         json_object = json.dumps(custom_settings, indent=4)
-        with open('Image_Viewer/customSettings.json', 'w') as openfile:
+        with open('Image_Viewer/settings/customSettings.json', 'w') as openfile:
             openfile.write(json_object)
 
     def change_theme(self, theme):
